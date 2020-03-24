@@ -1,5 +1,3 @@
-import shared.Helper;
-
 /**
  * Solution1143
  */

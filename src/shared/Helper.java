@@ -10,12 +10,15 @@ public class Helper {
   }
 
   public static void print(int[][] mat) {
+    System.out.println('[');
     for (int i = 0; i < mat.length; i++) {
+      System.out.print(" [");
       for (int j = 0; j < mat[0].length; j++) {
         System.out.print(mat[i][j] + " ");
       }
-      System.out.println();
+      System.out.println("]");
     }
+    System.out.println(']');
   }
 
   public static void print(int[] arr) {

@@ -1,3 +1,4 @@
+import shared.Helper;
 import shared.TreeNode;
 
 /**
@@ -16,13 +17,12 @@ public class Solution226 {
     root.right.left = new TreeNode(6);
     root.right.right = new TreeNode(9);
 
-    new Solution().invertTree(root);
+    Helper.print(new Solution().invertTree(root));
   }
 
   static class Solution {
     public TreeNode invertTree(TreeNode node) {
-      if (node == null)
-        return node;
+      if (node == null) return node;
 
       TreeNode temp = node.left;
       node.left = node.right;

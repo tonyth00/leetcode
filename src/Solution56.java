@@ -16,22 +16,19 @@ public class Solution56 {
   static class Solution {
     public int[][] merge(int[][] intervals) {
       if (intervals == null || intervals.length < 2) return intervals;
-      Arrays.sort(intervals, (i1, i2) -> Integer.compare(i1[0], i2[0]));
-      List<int[]> result = new ArrayList<>();
-
+      Arrays.sort(intervals, (a,  b) -> Integer.compare(a[0], b[0]));
+      List<int[]> res = new ArrayList<>();
       int[] newInterval = intervals[0];
-      result.add(newInterval);
+      res.add(newInterval);
       for (int[] interval : intervals) {
         if (interval[0] <= newInterval[1]) {
           newInterval[1] = Math.max(newInterval[1], interval[1]);
         } else {
           newInterval = interval;
-          result.add(newInterval);
+          res.add(newInterval);
         }
       }
-
-      return result.toArray(new int[result.size()][]);
-      
+      return res.toArray(new int[res.size()][2]);
     }
   }
 }

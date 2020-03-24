@@ -1,5 +1,4 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.PriorityQueue;
 
 import shared.Helper;
 import shared.ListNode;
@@ -21,39 +20,23 @@ public class Solution23 {
   static class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
       ListNode dummy = new ListNode(0);
-      ListNode current = dummy;
-
-      Set<Integer> activeListIndices = new HashSet<>();
-      for (int i = 0; i < lists.length; i++) {
-        if (lists[i] != null) {
-          activeListIndices.add(i);
-        }
+      
+      PriorityQueue<ListNode> queue = new PriorityQueue<>((a, b) -> Integer.compare(a.val, b.val));
+      for (ListNode node : lists) {
+        if (node != null) queue.add(node); // O(k log k)
       }
 
-      while (!activeListIndices.isEmpty()) {
-        if (activeListIndices.size() == 1) {
-          current.next = lists[activeListIndices.toArray(new Integer[1])[0]];
-          return dummy.next;
-        }
-        int minValue = Integer.MAX_VALUE;
-        int minValueIndex = -1;
-        for (Integer index : activeListIndices) {
-          ListNode node = lists[index];
-          if (node.val < minValue) {
-            minValue = node.val;
-            minValueIndex = index;
-          }
-        }
-        current.next = lists[minValueIndex];
-        current = current.next;
-        lists[minValueIndex] = lists[minValueIndex].next;
-        if (lists[minValueIndex] == null) {
-          activeListIndices.remove(minValueIndex);
-        }
+      ListNode cur = dummy;
+      while (!queue.isEmpty()) { // runs O(nk) times, where n is average length of list
+        ListNode node = queue.remove(); // O(1)
+
+        cur.next = node;
+        cur = node;
+        if (node.next != null) queue.add(node.next); // O(log k)
+
       }
 
       return dummy.next;
-
     }
   }
 }

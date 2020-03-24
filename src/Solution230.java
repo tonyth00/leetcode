@@ -1,3 +1,4 @@
+import shared.Helper;
 import shared.TreeNode;
 
 /**
@@ -6,36 +7,28 @@ import shared.TreeNode;
 public class Solution230 {
 
   public static void main(String[] args) {
-    TreeNode root = new TreeNode(3);
-    root.left = new TreeNode(1);
-    root.left.right = new TreeNode(2);
-    root.right = new TreeNode(4);
-
-    System.out.println(new Solution().kthSmallest(root, 2));
+    TreeNode root = Helper.generateTree(new Integer[] { 5, 3, 6, 2, 4, null, null, 1 });
+    Helper.print(root);
+    System.out.println(new Solution().kthSmallest(root, 3));
   }
 
   static class Solution {
     public int kthSmallest(TreeNode root, int k) {
-      int[] nums = new int[2];
-      inorder(root, k, nums);
-      return nums[1];
+      int[] res = { k, 0 };
+      inorder(root, res);
+      return res[1];
     }
 
-    public void inorder(TreeNode node, int k, int[] nums) {
-      if (node == null)
-        return;
+    public void inorder(TreeNode node, int[] r) {
+      if (node == null) return;
 
-      inorder(node.left, k, nums);
-      if (++nums[0] == k) {
-        nums[1] = node.val;
-        return;
+      inorder(node.left, r);
+      r[0]--;
+      if (r[0] > 0) {
+        inorder(node.right, r);
+      } else if (r[0] == 0) {
+        r[1] = node.val;
       }
-
-      if (nums[0] < k) {
-        System.out.println(node.val);
-        inorder(node.right, k, nums);
-      }
-
     }
   }
 }
