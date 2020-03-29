@@ -1,6 +1,5 @@
-import java.util.HashSet;
-import java.util.Stack;
-
+import java.util.*;
+import java.awt.*;
 /**
  * Solution403
  */
@@ -22,24 +21,22 @@ public class Solution403 {
       HashSet<Integer> set = new HashSet<>();
       for (int i = 0; i < stones.length; i++) set.add(stones[i]);
 
-      Stack<Integer> positions = new Stack<>();
-      Stack<Integer> jumpSizes = new Stack<>();
-      positions.push(0);
-      jumpSizes.push(0);
-      
-      while (!positions.isEmpty()) {
-        int position = positions.pop();
-        int jumpSize = jumpSizes.pop();
+      Deque<Point> deque = new LinkedList<>();
+      deque.add(new Point(0, 0));
+      Set<Point> seen = new HashSet<>();
 
+      while (!deque.isEmpty()) {
+        Point point = deque.pop();
+        if (!seen.add(point)) continue;
+        int position = point.x;
+        int jumpSize = point.y;
         for (int k = jumpSize - 1; k <= jumpSize + 1; k++) {
           if (k <= 0) continue;
           int nextPosition = position + k;
-          // System.out.println("nextpos " + nextPosition);
           if (nextPosition == lastPosition) {
             return true;
           } else if (set.contains(nextPosition)) {
-            positions.push(nextPosition);
-            jumpSizes.push(k);
+            deque.push(new Point(nextPosition, k));
           }
         }
       }

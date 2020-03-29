@@ -10,24 +10,18 @@ public class Solution14 {
 
   static class Solution {
     public String longestCommonPrefix(String[] strs) {
-      if (strs == null || strs.length == 0)
-        return "";
+      if (strs == null || strs.length == 0) return "";
 
-      int index = 0;
-      char match;
-      while (strs.length > 0 && index < strs[0].length()) {
-        match = strs[0].charAt(index);
+      int i = 0;
+      while (i < strs[0].length()) {
+        char c = strs[0].charAt(i);
 
         for (String word : strs) {
-          if (index < word.length() && word.charAt(index) == match) {
-            continue;
-          } else {
-            return strs[0].substring(0, index);
-          }
+          if (i >= word.length() || word.charAt(i) != c) return strs[0].substring(0, i);
         }
-        index++;
+        i++;
       }
-      return strs[0].substring(0, index);
+      return strs[0].substring(0, i);
     }
   }
 }

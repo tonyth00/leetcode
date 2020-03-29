@@ -28,8 +28,7 @@ public class Solution23 {
 
       ListNode cur = dummy;
       while (!queue.isEmpty()) { // runs O(nk) times, where n is average length of list
-        ListNode node = queue.remove(); // O(1)
-
+        ListNode node = queue.remove(); // O(log k)
         cur.next = node;
         cur = node;
         if (node.next != null) queue.add(node.next); // O(log k)

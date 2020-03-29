@@ -10,12 +10,19 @@ public class Solution268 {
 
   static class Solution {
     public int missingNumber(int[] nums) {
-      int N = nums.length;
-      int sum = N * (N + 1) / 2;
+      int res = nums.length;
       for (int i = 0; i < nums.length; i++) {
-        sum -= nums[i];
+        res = res ^ i ^ nums[i];
       }
-      return sum;
+      return res;
     }
+    // public int missingNumber(int[] nums) {
+    //   int N = nums.length;
+    //   int sum = N * (N + 1) / 2;
+    //   for (int i = 0; i < nums.length; i++) {
+    //     sum -= nums[i];
+    //   }
+    //   return sum;
+    // }
   }
 }

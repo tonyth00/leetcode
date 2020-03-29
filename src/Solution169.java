@@ -9,13 +9,13 @@ public class Solution169 {
 
   static class Solution {
     public int majorityElement(int[] nums) {
-      int candidate = nums[0];
-      int count = 1;
-      for (int i = 1; i < nums.length; i++) {
+      int candidate = -1;
+      int count = 0;
+      for (int num : nums) {
         if (count == 0) {
           count++;
-          candidate = nums[i];
-        } else if (nums[i] == candidate) {
+          candidate = num;
+        } else if (num == candidate) {
           count++;
         } else {
           count--;

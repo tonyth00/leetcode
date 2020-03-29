@@ -1,4 +1,4 @@
-import java.util.HashSet;
+import java.util.*;
 
 /**
  * Solution202
@@ -6,20 +6,20 @@ import java.util.HashSet;
 public class Solution202 {
 
   public static void main(String[] args) {
-    System.out.println(new Solution().isHappy(1));
+    System.out.println(new Solution().isHappy(20));
   }
 
   static class Solution {
     public boolean isHappy(int n) {
-      HashSet<Integer> seen = new HashSet<>();
-      
-      while (n != 1) {
-        int N = n;
+      Set<Integer> seen = new HashSet<>();
+      seen.add(n);
+      while(n != 1) {
         int sum = 0;
-        while (N > 0) {
-          int digit = N % 10;
-          sum += digit*digit;
-          N /= 10;
+        
+        while (n > 0) {
+          int a = n % 10;
+          n /= 10;
+          sum += a*a;
         }
         if (!seen.add(sum)) return false;
 
