@@ -6,7 +6,7 @@ class Solution520 {
   static class Solution {
     public boolean detectCapitalUse(String word) {
       int count = 0;
-      for (int i = 0; i < word.length; i++) {
+      for (int i = 0; i < word.length(); i++) {
         if (Character.isUpperCase(word.charAt(i))) count++;
       }
 
