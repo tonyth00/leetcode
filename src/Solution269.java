@@ -1,5 +1,4 @@
 import java.util.*;
-import shared.*;
 
 class Solution269 {
   public static void main(String[] args) {
@@ -10,7 +9,7 @@ class Solution269 {
 
   static class Solution {
     public String alienOrder(String[] words) {
-      Map<Character, List<Character>> adj = new HashMap();
+      Map<Character, List<Character>> adj = new HashMap<>();
       for (String word : words) {
         for (int i = 0; i < word.length(); i++) {
           adj.putIfAbsent(word.charAt(i), new LinkedList<>());

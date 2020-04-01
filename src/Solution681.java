@@ -1,5 +1,4 @@
 import java.util.*;
-import shared.*;
 class Solution681 {
   public static void main(String[] args) {
     System.out.println(new Solution().nextClosestTime("23:59"));

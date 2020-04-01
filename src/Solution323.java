@@ -1,4 +1,3 @@
-import java.util.*;
 class Solution323 {
   public static void main(String[] args) {
     System.out.println(new Solution().countComponents(5, new int[][] {{0, 1}, {1, 2}, {3, 4}}));

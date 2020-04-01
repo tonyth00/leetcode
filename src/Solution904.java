@@ -1,5 +1,3 @@
-import java.util.*;
-
 class Solution904 {
   public static void main(String[] args) {
     System.out.println(new Solution().totalFruit(new int[] { 3,3,3,1,2,1,1,2,3,3,4 }));

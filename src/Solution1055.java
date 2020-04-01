@@ -4,7 +4,7 @@
 public class Solution1055 {
 
   public static void main(String[] args) {
-    System.out.println(new Solution().shortestWay("abc", "abcbc"));
+    System.out.println(new Solution().shortestWay("xyz", "xzyxz"));
   }
 
   static class Solution {
@@ -20,14 +20,16 @@ public class Solution1055 {
       int i = s.length;
       int count = 0;
       for (int j = 0; j < t.length; j++) {
-        if (!has[t[j] - 'a']) return -1;
+        if (!has[t[j] - 'a'])
+          return -1;
 
         for (; i <= s.length; i++) {
           if (i == s.length) {
             i = 0;
             count++;
           }
-          if (s[i] == t[j]) break;
+          if (s[i] == t[j])
+            break;
         }
         i++;
 
