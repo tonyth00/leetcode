@@ -13,15 +13,32 @@ public class Helper {
   }
 
   public static void print(int[][] mat) {
-    System.out.println('[');
-    for (int i = 0; i < mat.length; i++) {
-      System.out.print(" [");
-      for (int j = 0; j < mat[0].length; j++) {
-        System.out.print(mat[i][j] + " ");
+    int m = mat.length;
+    int n = mat[0].length;
+    int maxLen = 0;
+    for (int i = 0; i < m; i++) {
+      for (int j = 0; j < n; j++) {
+        maxLen = Math.max(maxLen, String.valueOf(mat[i][j]).length());
       }
-      System.out.println("]");
     }
-    System.out.println(']');
+
+    StringBuilder sb = new StringBuilder();
+    sb.append('[');
+
+    for (int i = 0; i < m; i++) {
+      sb.append(i == 0 ? '[' : " [");
+      for (int j = 0; j < n; j++) {
+        String entry = String.valueOf(mat[i][j]);
+        while (entry.length() < maxLen) {
+          entry += ' ';
+        }
+
+        sb.append(entry + (j == n - 1 ? "" : " "));
+      }
+      sb.append(']' + (i == m - 1 ? "" : "\n"));
+    }
+    sb.append(']');
+    System.out.println(sb.toString());
   }
 
   public static void print(char[][] mat) {
@@ -85,7 +102,8 @@ public class Helper {
   public static TreeNode generateTree(Integer[] nums) {
     Deque<TreeNode> nodes = new LinkedList<>();
     TreeNode root = nums[0] == null ? null : new TreeNode(nums[0]);
-    if (root != null) nodes.add(root);
+    if (root != null)
+      nodes.add(root);
     int pos = 1;
     while (!nodes.isEmpty()) {
       int size = nodes.size();
@@ -93,17 +111,21 @@ public class Helper {
         TreeNode node = nodes.remove();
         node.left = pos >= nums.length ? null : createNode(nums[pos++]);
         node.right = pos >= nums.length ? null : createNode(nums[pos++]);
-        if (node.left != null) nodes.add(node.left);
-        if (node.right != null) nodes.add(node.right);
+        if (node.left != null)
+          nodes.add(node.left);
+        if (node.right != null)
+          nodes.add(node.right);
       }
     }
 
     return root;
   }
+
   private static TreeNode createNode(Integer val) {
-    if (val == null) return null;
+    if (val == null)
+      return null;
     return new TreeNode(val);
   }
 
-  
+
 }
