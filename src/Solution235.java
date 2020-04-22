@@ -7,7 +7,7 @@ import shared.TreeNode;
 public class Solution235 {
 
   public static void main(String[] args) {
-    TreeNode root = Helper.generateTree(new Integer[] { 6, 2, 8, 0, 4, 7, 9, null, null, 3, 5 });
+    TreeNode root = Helper.createTree(new Integer[] { 6, 2, 8, 0, 4, 7, 9, null, null, 3, 5 });
     System.out.println(new Solution().lowestCommonAncestor(root, root.left, root.right).val);
   }
 

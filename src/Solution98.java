@@ -7,7 +7,7 @@ import shared.TreeNode;
 public class Solution98 {
 
   public static void main(String[] args) {
-    TreeNode root = Helper.generateTree(new Integer[] { 5, 1, 4, null, null, 3, 6 });
+    TreeNode root = Helper.createTree(new Integer[] { 5, 1, 4, null, null, 3, 6 });
 
     System.out.println(new Solution().isValidBST(root));
   }

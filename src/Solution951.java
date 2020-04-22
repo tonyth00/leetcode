@@ -7,8 +7,8 @@ import shared.Helper;
 public class Solution951 {
 
   public static void main(String[] args) {
-    TreeNode root1 = Helper.generateTree(new Integer[] { 1, 2, 3, 4, 5, 6, null, null, null, 7, 8 });
-    TreeNode root2 = Helper.generateTree(new Integer[] { 1, 3, 2, null, 6, 4, 5, null, null, null, null, 8, 7 });
+    TreeNode root1 = Helper.createTree(new Integer[] { 1, 2, 3, 4, 5, 6, null, null, null, 7, 8 });
+    TreeNode root2 = Helper.createTree(new Integer[] { 1, 3, 2, null, 6, 4, 5, null, null, null, null, 8, 7 });
     Helper.print(root2);
     System.out.println(new Solution().flipEquiv(root1, root2));
   }

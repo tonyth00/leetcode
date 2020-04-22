@@ -7,7 +7,7 @@ import shared.TreeNode;
 public class Solution124 {
 
   public static void main(String[] args) {
-    TreeNode root = Helper.generateTree(new Integer[] { -10, 9, 20, null, null, 15, 7 });
+    TreeNode root = Helper.createTree(new Integer[] { -10, 9, 20, null, null, 15, 7 });
     Helper.print(root);
     System.out.println(new Solution().maxPathSum(root));
   }

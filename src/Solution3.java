@@ -1,29 +1,29 @@
-import java.util.HashMap;
-
 /**
  * Solution3
  */
 public class Solution3 {
 
   public static void main(String[] args) {
-    System.out.println(new Solution().lengthOfLongestSubstring("abba"));
+    System.out.println(new Solution().lengthOfLongestSubstring("abcabcbb"));
   }
 
   static class Solution {
     public int lengthOfLongestSubstring(String s) {
-      if (s == null)
-        return 0;
+      int[] map = new int[128];
       int max = 0;
-
-      HashMap<Character, Integer> map = new HashMap<>();
-      for (int left = 0, right = 0; right < s.length(); right++) {
+      int left = 0;
+      int right = 0;
+      while (right < s.length()) {
         char c = s.charAt(right);
-        if (map.containsKey(c)) {
-          left = Math.max(left, map.get(c) + 1);
+        map[c]++;
+        right++;
+        while (map[c] > 1) {
+          map[s.charAt(left)]--;
+          left++;
         }
 
-        map.put(c, right);
-        max = Math.max(max, right - left + 1);
+        max = Math.max(max, right - left);
+
       }
 
       return max;

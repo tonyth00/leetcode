@@ -11,7 +11,7 @@ import shared.TreeNode;
 public class Solution297 {
 
   public static void main(String[] args) {
-    TreeNode root = Helper.generateTree(new Integer[] { 1, 2, 3, null, null, 4, 5 });
+    TreeNode root = Helper.createTree(new Integer[] { 1, 2, 3, null, null, 4, 5 });
     Codec codec = new Codec();
     System.out.println(codec.serialize(root));
     Helper.print(codec.deserialize(codec.serialize(root)));

@@ -15,27 +15,27 @@ public class Solution31 {
     // solve by case analysis.
     public void nextPermutation(int[] nums) {
       int i = nums.length - 2;
-      while (i >= 0 && nums[i] >= nums[i + 1]) i--; // O(n)
-
-      if (i >= 0) {
+      // find index that breaks descending order
+      while (i >= 0 && nums[i] >= nums[i+1]) i--;
+      if (i >= 0) { // if not entirely descending
         int j = nums.length - 1;
-        // we must swap with something larger than what is at index i. skip elements equal to itself.
-        while (nums[j] <= nums[i]) j--; // O(n)
-        swap(nums, i, j);
+        while (nums[i] >= nums[j]) j--; // find next number larger than nums[i]
+        swap(nums, i, j); // swapping guarantees sequence to right of i is descending
       }
-
-      reverse(nums, i + 1, nums.length - 1); // O(n)
+      // reverse descending sequence
+      reverse(nums, i + 1, nums.length - 1);
     }
 
-    public void swap(int[] nums, int i, int j) {
+    private void swap(int[] nums, int i, int j) {
       int temp = nums[i];
       nums[i] = nums[j];
       nums[j] = temp;
     }
 
-    public void reverse(int[] nums, int start, int end) {
-      while (start < end)
-        swap(nums, start++, end--);
+    private void reverse(int[] nums, int i, int j) {
+      while (i < j) {
+        swap(nums, i++, j--);
+      }
     }
   }
 }

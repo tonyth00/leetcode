@@ -7,7 +7,7 @@ import shared.TreeNode;
 
 public class Solution102 {
   public static void main(String[] args) {
-    TreeNode root = Helper.generateTree(new Integer[] { 3, 9, 20, null, null, 15, 7 });
+    TreeNode root = Helper.createTree(new Integer[] { 3, 9, 20, null, null, 15, 7 });
     System.out.println(new Solution().levelOrder(root));
   }
 

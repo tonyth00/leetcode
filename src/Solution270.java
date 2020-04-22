@@ -7,7 +7,7 @@ import shared.TreeNode;
 public class Solution270 {
 
   public static void main(String[] args) {
-    TreeNode root = Helper.generateTree(new Integer[] { 4, 2, 5, 1, 3 });
+    TreeNode root = Helper.createTree(new Integer[] { 4, 2, 5, 1, 3 });
     System.out.println(new Solution().closestValue(root, 3.714286));
   }
 

@@ -7,8 +7,8 @@ import shared.TreeNode;
 public class Solution572 {
 
   public static void main(String[] args) {
-    TreeNode s = Helper.generateTree(new Integer[] { 3, 4, 5, 1, 2, null, null, null, null, 0 });
-    TreeNode t = Helper.generateTree(new Integer[] { 4, 1, 2 });
+    TreeNode s = Helper.createTree(new Integer[] { 3, 4, 5, 1, 2, null, null, null, null, 0 });
+    TreeNode t = Helper.createTree(new Integer[] { 4, 1, 2 });
     System.out.println(new Solution().isSubtree(s, t));
   }
 

@@ -99,7 +99,7 @@ public class Helper {
     return head.next;
   }
 
-  public static TreeNode generateTree(Integer[] nums) {
+  public static TreeNode createTree(Integer[] nums) {
     Deque<TreeNode> nodes = new LinkedList<>();
     TreeNode root = nums[0] == null ? null : new TreeNode(nums[0]);
     if (root != null)

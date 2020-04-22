@@ -7,7 +7,7 @@ import shared.TreeNode;
 public class Solution687 {
 
   public static void main(String[] args) {
-    TreeNode root = Helper.generateTree(new Integer[] { 1, 4, 5, 4, 4, null, 5 });
+    TreeNode root = Helper.createTree(new Integer[] { 1, 4, 5, 4, 4, null, 5 });
     System.out.println(new Solution().longestUnivaluePath(root));
   }
 

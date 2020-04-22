@@ -4,7 +4,7 @@ import shared.TreeNode;
 public class Solution337 {
   public static void main(String[] args) {
     System.out
-        .println(new Solution().rob(Helper.generateTree(new Integer[] {3, 4, 5, 1, 3, null, 1})));
+        .println(new Solution().rob(Helper.createTree(new Integer[] {3, 4, 5, 1, 3, null, 1})));
   }
 
   static class Solution {

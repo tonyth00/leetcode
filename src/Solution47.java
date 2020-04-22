@@ -8,37 +8,34 @@ import java.util.List;
 public class Solution47 {
 
   public static void main(String[] args) {
-    System.out.println(new Solution().permuteUnique(new int[] { 1, 1, 2 }));
+    System.out.println(new Solution().permuteUnique(new int[] {1, 1, 2}));
   }
 
   static class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
       List<List<Integer>> res = new ArrayList<>();
-      if (nums == null || nums.length == 0) return res;
-
       Arrays.sort(nums);
-      backtrack(nums, new ArrayList<>(), new boolean[nums.length], res);
+      backtrack(nums, res, new ArrayList<>(), new boolean[nums.length]);
       return res;
     }
 
-    public void backtrack(int[] nums, List<Integer> permutation, boolean[] visited, List<List<Integer>> res) {
-      if (nums.length == permutation.size()) {
-        res.add(new ArrayList<>(permutation));
-        return;
-      }
+    private void backtrack(int[] nums, List<List<Integer>> res, List<Integer> cur, boolean[] used) {
+      if (cur.size() == nums.length) {
+        res.add(new ArrayList<>(cur));
+      } else {
+        for (int i = 0; i < nums.length; i++) {
+          if (used[i]) continue;
 
-      for (int i = 0; i < nums.length; i++) {
-        if (visited[i]) continue;
-        if (i > 0 && nums[i] == nums[i - 1] && !visited[i-1]) continue;
-        
+          used[i] = true;
+          cur.add(nums[i]);
+          backtrack(nums, res, cur, used);
+          cur.remove(cur.size() - 1);
+          used[i] = false;
 
-        visited[i] = true;
-        permutation.add(nums[i]);
-        backtrack(nums, permutation, visited, res);
-        visited[i] = false;
-        permutation.remove(permutation.size() - 1);
-        
+          while (i < nums.length && nums[i] == nums[i + 1]) i++;
+        }
       }
+    
     }
   }
 }

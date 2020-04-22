@@ -2,7 +2,7 @@ import shared.Helper;
 import shared.TreeNode;
 public class Solution1145 {
   public static void main(String[] args) {
-    System.out.println(new Solution().btreeGameWinningMove(Helper.generateTree(new Integer[] {1,2,3,4,5,6,7,8,9,10,11}), 11, 3));
+    System.out.println(new Solution().btreeGameWinningMove(Helper.createTree(new Integer[] {1,2,3,4,5,6,7,8,9,10,11}), 11, 3));
   }
 
   static class Solution {

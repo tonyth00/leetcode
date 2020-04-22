@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,28 +12,24 @@ public class Solution46 {
 
   static class Solution {
     public List<List<Integer>> permute(int[] nums) {
-      List<List<Integer>> res = new LinkedList<>();
-      if (nums == null || nums.length == 0) return res;
-
-      boolean[] visited = new boolean[nums.length];
-      backtrack(nums, new LinkedList<>(), visited, res);
+      List<List<Integer>> res = new ArrayList<>();
+      backtrack(nums, res, new ArrayList<>(), new boolean[nums.length]);
       return res;
-
     }
 
-    public void backtrack(int[] nums, List<Integer> permutation, boolean[] visited, List<List<Integer>> res) {
-      if (nums.length == permutation.size()) {
-        res.add(new LinkedList<>(permutation));
-      }
+    private void backtrack(int[] nums, List<List<Integer>> res, List<Integer> cur, boolean[] used) {
+      if (cur.size() == nums.length) {
+        res.add(new ArrayList<>(cur));
+      } else {
+        for (int i = 0; i < nums.length; i++) {
+          if (used[i]) continue;
 
-      for (int i = 0; i < nums.length; i++) {
-        if (visited[i]) continue;
-
-        permutation.add(nums[i]);
-        visited[i] = true;
-        backtrack(nums, permutation, visited, res);
-        visited[i] = false;
-        permutation.remove(permutation.size() - 1);
+          used[i] = true;
+          cur.add(nums[i]);
+          backtrack(nums, res, cur, used);
+          cur.remove(cur.size() - 1);
+          used[i] = false;
+        }
       }
     }
   }

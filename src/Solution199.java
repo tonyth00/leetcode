@@ -12,7 +12,7 @@ import shared.TreeNode;
 public class Solution199 {
 
   public static void main(String[] args) {
-    TreeNode root = Helper.generateTree(new Integer[] {1,2,3,null,5,null,4});
+    TreeNode root = Helper.createTree(new Integer[] {1,2,3,null,5,null,4});
     // Helper.print(root);
     System.out.println(new Solution().rightSideView(root));
   }

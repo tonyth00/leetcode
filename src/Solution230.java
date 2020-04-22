@@ -7,7 +7,7 @@ import shared.TreeNode;
 public class Solution230 {
 
   public static void main(String[] args) {
-    TreeNode root = Helper.generateTree(new Integer[] { 5, 3, 6, 2, 4, null, null, 1 });
+    TreeNode root = Helper.createTree(new Integer[] { 5, 3, 6, 2, 4, null, null, 1 });
     Helper.print(root);
     System.out.println(new Solution().kthSmallest(root, 3));
   }

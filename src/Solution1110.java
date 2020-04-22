@@ -13,7 +13,7 @@ import shared.TreeNode;
 class Solution1110 {
   public static void main(String[] args) {
     System.out.println(
-        new Solution().delNodes(Helper.generateTree(new Integer[] { 1, 2, 3, 4, 5, 6, 7 }), new int[] { 3, 5 }));
+        new Solution().delNodes(Helper.createTree(new Integer[] { 1, 2, 3, 4, 5, 6, 7 }), new int[] { 3, 5 }));
   }
 
   static class Solution {
