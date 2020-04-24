@@ -16,17 +16,19 @@ public class Solution36 {
   }
 
   static class Solution {
+    /**
+     * O(3n^2) time since each row, col, box take O(n^2) each.
+     */
     public boolean isValidSudoku(char[][] board) {
       int n = board.length;
       int rowSet = 0;
       int colSet = 0;
       int boxSet = 0;
       for (int i = 0; i < n; i++) {
-        // check rows
         rowSet = 0;
         colSet = 0;
         boxSet = 0;
-        
+        // check rows
         for (int j = 0; j < n; j++) {
           if (board[i][j] == '.') continue;
           int flag = 1 << board[i][j] - '0';

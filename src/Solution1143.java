@@ -8,30 +8,25 @@ public class Solution1143 {
   }
 
   static class Solution {
+    /**
+     * Intution: Assume two strings of arbitrary length X and Y. Focus on the last character of both strings -
+     * If they're the same, remove them both and solve LCS(X-1, Y-1) - If they're not the same, take
+     * the maximum of either LCS(X, Y-1) or LCS(X-1, Y-1) DP[i][j] = DP[i-1][j-1] + 1 if same =
+     * max(DP[i][j-1],DP[i-1][j] otherwise
+     */
     public int longestCommonSubsequence(String str1, String str2) {
-      if (str1 == null || str2 == null || str1.length() == 0 || str2.length() == 0)
-        return 0;
       int m = str1.length();
       int n = str2.length();
-      if (m > n)
-        return longestCommonSubsequence(str2, str1);
 
-      // int[] C1 = new int[m + 1];
-      // int[] C2 = new int[m + 1];
-
-      int[][] C = new int[2][m + 1];
-
-      for (int j = 1; j <= n; j++) {
-        for (int i = 1; i <= m; i++) {
-          if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
-            C[j % 2][i] = C[(j - 1) % 2][i - 1] + 1;
-          } else {
-            C[j % 2][i] = Math.max(C[j % 2][i - 1], C[(j - 1) % 2][i]);
-          }
+      int[][] dp = new int[m + 1][n + 1];
+      for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+          boolean same = str1.charAt(i) == str2.charAt(j);
+          dp[i + 1][j + 1] = same ? 1 + dp[i][j] : 1 + Math.max(dp[i][j + 1], dp[i + 1][j]);
         }
       }
 
-      return C[n % 2][m];
+      return dp[m][n];
     }
   }
 }

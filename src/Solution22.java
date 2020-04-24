@@ -13,19 +13,26 @@ public class Solution22 {
   static class Solution {
     public List<String> generateParenthesis(int n) {
       List<String> list = new LinkedList<>();
-      helper(n, list, "", 0, 0);
+      backtrack(n, list, new char[n*2], 0, 0);
       return list;
     }
-
-    public void helper(int n, List<String> list, String s, int numOpen, int numClose) {
-      if (numOpen == n && numClose == n) {
-        list.add(s);
-      } else {
-        if (numOpen < n) {
-          helper(n, list, s + "(", numOpen + 1, numClose);
+    
+    /**
+     * O(2^n) upper bound time.
+     */
+    public void backtrack(int n, List<String> res, char[] ch, int open, int close) {
+      if (open + close == 2*n) res.add(new String(ch));
+      else {
+        int i = open + close;
+        
+        if (open < n) {
+          ch[i] = '(';
+          backtrack(n, res, ch, open + 1, close);
         }
-        if (numClose < n && numOpen > numClose) {
-          helper(n, list, s + ")", numOpen, numClose + 1);
+
+        if (close < open) {
+          ch[i] = ')';
+          backtrack(n, res, ch, open, close + 1);
         }
       }
     }
