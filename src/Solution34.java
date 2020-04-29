@@ -2,36 +2,39 @@ import shared.Helper;
 public class Solution34 {
   public static void main(String[] args) {
     int[] nums = {5, 7, 7, 8, 8, 10};
-    Helper.print(new Solution().searchRange(nums, 8));  
+    Helper.print(new Solution().searchRange(nums, 9));  
   }
 
   static class Solution {
     public int[] searchRange(int[] nums, int target) {
-      int[] res = {-1, -1};
-      if (nums == null) return res;
-      res[0] = search(nums, target, true);
-      if (res[0] == -1) return res;
-      res[1] = search(nums, target, false);
-      return res;
+      int left = search(nums, target, true);
+      if (left == nums.length || nums[left] != target) return new int[] {-1, -1};
+      int right = search(nums, target, false);
+      return new int[] {left, right};
     }
 
-    private int search(int[] nums, int k, boolean first) {
-      int L = 0;
-      int R = nums.length - 1;
-      int res = -1;
-      while (L <= R) {
-        int M = L + (R - L) / 2;
-        if (k == nums[M]) {
-          res = M;
-          if (first) R = M - 1;
-          else L = M + 1;
-        } else if (k < nums[M]) {
-          R = M - 1;
+    /**
+     * Intuition:
+     * - For leftmost target, we let G(x) = A[x] >= target. Returns first index where G(x) is true.
+     * - For rightmost target, we let G(x) = A[x] > target. Returns first index where G(x) is true.
+     * Since we're looking for first element greater than target, once we find it, return x - 1 which is rightmost target.
+     */
+    private int search(int[] A, int target, boolean left) {
+      int l = 0;
+      int r = A.length;
+      while (l < r) {
+        int m = l + (r - l)/2;
+
+        if (left) {
+          if (A[m] >= target) r = m;
+          else l = m + 1;
         } else {
-          L = M + 1;
+          if (A[m] > target) r = m;
+          else l = m + 1;
         }
       }
-      return res;
+
+      return left ? l : l - 1;
     }
   }
 }

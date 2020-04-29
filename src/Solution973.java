@@ -7,14 +7,19 @@ class Solution973 {
   }
 
   static class Solution {
+    /**
+     * Intuition:
+     * Use quicksort to randomly guess a pivot. If guess is correct, we're done.
+     * Otherwise, on average, decrease the search space by half => n + 1/2n + 1/4n + 1/8n => O(n)
+     */
     public int[][] kClosest(int[][] points, int K) {
 
       int start = 0;
       int end = points.length - 1;
 
       Random rand = new Random();
-      while (start < end) {
-        int pivotIndex = partition(points, start, end, start + rand.nextInt(end - start));
+      while (start <= end) {
+        int pivotIndex = partition(points, start, end, start + rand.nextInt(end - start + 1));
         if (pivotIndex == K - 1) {
           break;
         } else if (pivotIndex > K - 1) {

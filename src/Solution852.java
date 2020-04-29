@@ -9,20 +9,14 @@ public class Solution852 {
 
   static class Solution {
     public int peakIndexInMountainArray(int[] A) {
-      int start = 0;
-      int end = A.length - 1;
-
-      while (start < end) {
-        int mid = start + (end - start) / 2;
-
-        if (A[mid] < A[mid + 1]) {
-          start = mid + 1;
-        } else {
-          end = mid;
-        }
+      int L = 0;
+      int R = A.length;
+      while (L < R) {
+        int M = L + (R - L)/2;
+        if (A[M] < A[M + 1]) L = M + 1;
+        else R = M;
       }
-
-      return start;
+      return L;
     }
   }
 }

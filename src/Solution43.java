@@ -1,5 +1,3 @@
-import shared.Helper;
-
 public class Solution43 {
   public static void main(String[] args) {
     System.out.println(new Solution().multiply("123", "987"));

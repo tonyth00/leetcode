@@ -9,21 +9,19 @@ public class Solution35 {
 
   static class Solution {
     public int searchInsert(int[] nums, int target) {
-      int start = 0;
-      int end = nums.length;
+      int l = 0;
+      int r = nums.length;
 
-      while (start < end) {
-        int mid = (end + start)/2;
-        if (nums[mid] == target) {
-          return mid;
-        } else if (nums[mid] < target) {
-          start = mid + 1;
+      while (l < r) {
+        int m = l + (r - l)/2;
+        if (nums[m] >= target) {
+          r = m;
         } else {
-          end = mid;
+          l = m + 1;
         }
       }
 
-      return start;
+      return l;
     }
   }
 }
