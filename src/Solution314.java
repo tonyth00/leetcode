@@ -31,7 +31,6 @@ public class Solution314 {
         int size = queue.size();
         for (int i = 0; i < size; i++) {
           TreeNode node = queue.remove();
-          System.out.println(node.val);
           int col = colQueue.remove();
           map.putIfAbsent(col, new ArrayList<>());
 
