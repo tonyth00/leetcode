@@ -1,6 +1,7 @@
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Deque;
+import java.util.ArrayDeque;
+
 
 import shared.Helper;
 import shared.TreeNode;
@@ -27,9 +28,8 @@ public class Solution297 {
     }
 
     private void serial(TreeNode node, StringBuilder sb) {
-      if (node == null) {
-        sb.append('X');
-      } else {
+      if (node == null) sb.append('#');
+      else {
         sb.append(node.val);
         sb.append(',');
         serial(node.left, sb);
@@ -40,21 +40,17 @@ public class Solution297 {
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-      Queue<String> queue = new LinkedList<>(Arrays.asList(data.split(",")));
-      
+      Deque<String> queue = new ArrayDeque<>(Arrays.asList(data.split(",")));
       return deserial(queue);
     }
 
-    private TreeNode deserial(Queue<String> queue) {
-      String val = queue.remove();
-      if (val.equals("X")) {
-        return null;
-      } else {
-        TreeNode node = new TreeNode(Integer.parseInt(val));
-        node.left = deserial(queue);
-        node.right = deserial(queue);
-        return node;
-      }
+    private TreeNode deserial(Deque<String> queue) {
+      String s = queue.remove();
+      if (s.equals("#")) return null;
+      TreeNode node = new TreeNode(Integer.valueOf(s));
+      node.left = deserial(queue);
+      node.right = deserial(queue);
+      return node;
     }
   }
 }

@@ -72,7 +72,7 @@ public class Helper {
   public static void print(String[] arr) {
     System.out.print("[");
     for (int i = 0; i < arr.length; i++) {
-      System.out.print(arr[i] + (i == arr.length - 1 ? "" : ", "));
+      System.out.print("\"" + arr[i] + "\"" + (i == arr.length - 1 ? "" : ", "));
     }
     System.out.println("]");
   }
@@ -100,6 +100,7 @@ public class Helper {
   }
 
   public static TreeNode createTree(Integer[] nums) {
+    if (nums.length == 0) return null;
     Deque<TreeNode> nodes = new LinkedList<>();
     TreeNode root = nums[0] == null ? null : new TreeNode(nums[0]);
     if (root != null)

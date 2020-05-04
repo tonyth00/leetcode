@@ -1,4 +1,4 @@
-package shared;
+package shared.graph;
 import java.util.List;
 import java.util.ArrayList;
 

@@ -8,36 +8,33 @@ public class Solution81 {
   }
 
   static class Solution {
-    public boolean search(int[] nums, int target) {
-      if (nums == null || nums.length == 0)
-        return false;
+    /**
+     * Intuition:
+     * - Since duplicates exist, we need to process
+     * the event A[l] = A[m], in which case we just
+     * increment l++
+     */
+    public boolean search(int[] A, int k) {
+      if (A == null || A.length == 0)  return false;
 
-      int L = 0;
-      int R = nums.length - 1;
+      int l = 0;
+      int r = A.length - 1;
 
-      while (L + 1 < R) {
-        int mid = L + (R - L) / 2;
-        if (target == nums[mid])
-          return true;
-        if (nums[mid] > nums[L]) {
-          if (nums[L] <= target && target <= nums[mid]) {
-            R = mid;
-          } else {
-            L = mid;
-          }
-        } else if (nums[mid] < nums[L]) {
-          if (nums[mid] <= target && target <= nums[R]) {
-            L = mid;
-          } else {
-            R = mid;
-          }
-        } else {
-          L++;
+      while (l + 1 < r) {
+        int m = l + (r - l)/2;
+        if (A[m] == k) return true;
+        if (A[l] < A[m]) {
+          if (A[l] <= k && k <= A[m]) r = m;
+          else l = m;
+        } else if (A[l] > A[m]) {
+          if (A[m] <= k && k <= A[r]) l = m;
+          else r = m;
+        } else { // A[l] == A[m]
+          l++;
         }
       }
 
-      if (nums[L] == target || nums[R] == target) return true;
-      return false;
+      return A[l] == k || A[r] == k;
 
     }
   }

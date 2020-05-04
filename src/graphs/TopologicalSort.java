@@ -66,7 +66,7 @@ class TopologicalSort {
       if (!dfs(adj, state, res, v)) return false;
     }
     res.add(u);
-    state[u] = 2;
+    state[u] = 2; // set as visited
 
     return true;
   }
