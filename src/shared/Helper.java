@@ -1,7 +1,8 @@
 package shared;
 
 import java.util.Deque;
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 
 public class Helper {
   public static void print(ListNode node) {
@@ -99,9 +100,28 @@ public class Helper {
     return head.next;
   }
 
+  public static shared.nary.Node createNaryTree(Integer[] nums) {
+    if (nums.length == 0) return null;
+    Deque<shared.nary.Node> queue = new ArrayDeque<>();
+    shared.nary.Node root = nums[0] == null ? null : new shared.nary.Node(nums[0], new ArrayList<>());
+    if (root != null) queue.add(root);
+    int pos = 2;
+    while (!queue.isEmpty()) {
+      shared.nary.Node node = queue.remove();
+      while(pos < nums.length && nums[pos] != null) {
+        shared.nary.Node child = new shared.nary.Node(nums[pos++], new ArrayList<>());
+        node.children.add(child);
+        queue.add(child);
+      }
+      pos++;
+    }
+
+    return root;
+  }
+
   public static TreeNode createTree(Integer[] nums) {
     if (nums.length == 0) return null;
-    Deque<TreeNode> nodes = new LinkedList<>();
+    Deque<TreeNode> nodes = new ArrayDeque<>();
     TreeNode root = nums[0] == null ? null : new TreeNode(nums[0]);
     if (root != null)
       nodes.add(root);
