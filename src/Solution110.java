@@ -13,14 +13,11 @@ public class Solution110 {
 
     public int helper(TreeNode node) {
       if (node == null) return -1;
-
       int left = helper(node.left);
-      if (left == Integer.MIN_VALUE) return Integer.MIN_VALUE;
-
+      if (left == -2) return -2;
       int right = helper(node.right);
-      if (right == Integer.MIN_VALUE) return Integer.MIN_VALUE;
-
-      if (Math.abs(left - right) > 1) return Integer.MIN_VALUE;
+      if (right == -2) return -2;
+      if (Math.abs(left - right) > 1) return -2;
       
       return 1 + Math.max(left, right);
     }
@@ -31,7 +28,7 @@ public class Solution110 {
 
       int left = height(node.left);
       int right = height(node.right);
-      return Math.abs(left - right) <= 1 && isBalanced(node.left) && isBalanced(node.right);
+      return Math.abs(left - right) <= 1 && isBalanced2(node.left) && isBalanced2(node.right);
 
     }
 
